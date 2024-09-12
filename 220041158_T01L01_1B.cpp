@@ -2,9 +2,28 @@
 
 class Stack
 {
+private:
+    int top;
+    int* table;
+    int Dim;
+
 public:
-    int top = -1;
-    int table[100];
+    Stack(int dim)
+    {
+        top = -1;
+        Dim = dim;
+        table = new int[Dim];
+        for(int i =0; i<Dim; i++)
+        {
+            table[i] = 0;
+        }
+    }
+
+
+    ~Stack()
+    {
+        delete[] table;
+    }
 
     bool isEmpty()
     {
@@ -15,54 +34,74 @@ public:
         }
     }
 
-    bool isFull(){
-    if(top ==100){
-    std::cout<<"true"<<std::endl;
-        return top-1;
-    }
-    else{
-    std::cout<<"False"<<std::endl;
-    }
+    bool isFull()
+    {
+        if(top ==Dim)
+        {
+            std::cout<<"true"<<std::endl;
+            return top-1;
+        }
+        else
+        {
+            std::cout<<"False"<<std::endl;
+        }
 
 
     }
 
-    void push(int element){
+
+    void push(int element)
+    {
+        if(top == Dim){
+            std::cout << "Overflow"<< std::endl;
+        }
+        else{
         top++;
         table[top] = element;
-        std::cout<<element<<std::endl;
+        for(int i= 0;i<= top;i++){
+        std::cout<<table[i]<<" ";
+        }
+        }
     }
 
 
-    void pop(){
-        if(top==-1){
-        std::cout<<"Underflow"<<std::endl;
+    void pop()
+    {
+        if(top==-1)
+        {
+            std::cout<<"Underflow"<<std::endl;
         }
+        else{
         std::cout<<table[top]<<std::endl;
         top--;
+        }
     }
 
 
-    int Size(){
-    std::cout<<top<<std::endl;
-    return top;
+    int Size()
+    {
+        std::cout<<top+1<<std::endl;
+        return top;
     }
 
-    int Top(){
-    std::cout<<table[top]<<std::endl;
-    return table[top];
+    int Top()
+    {
+        std::cout<<table[top]<<std::endl;
+        return table[top];
     }
 
 };
 
 int main()
 {
-    class Stack s;
+    int dim;
+    std::cin>>dim;
+ Stack s(dim);
 
     while(1)
     {
-        int dim;
-        std::cin>>dim;
+
+
         int option,x;
         std::cin>>option;
         switch(option)
