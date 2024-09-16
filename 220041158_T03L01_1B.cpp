@@ -1,59 +1,38 @@
 #include <iostream>
+#include <vector>
+#include<stack>
 
-int top=-1;
-int table[100];
-void push(int element)
-{
-    top++;
-    table[top] = element;
-    std::cout<<"push"<<std::endl;
-}
+using namespace std;
 
-void pop()
-{
-    if(top==-1)
-    {
-        std::cout<<"Stack is empty"<<std::endl;
+bool is_found(int number, vector<int>& a){
+    for(int i:a){
+        if(i == number)
+            return true;
     }
-    std::cout<<"pop"<<std::endl;
-    top--;
+    return false;
 }
-
-
 int main()
 {
-    int element;
-    int array[5];
-    int index =1, check;
-
-    for(int i= 0; i<5; i++){
-         std::cin>>array[i];
+    int n, Size;
+    vector<int > a;
+    while(cin>> n)
+    {
+        a.push_back(n);
     }
-
-
-    while(index < 5)
+    Size = a.back();
+    for(int i= 1; i<=Size ; i++)
     {
 
-
-        push(index);
-
-
-        for(int i=0; i<5; i++)
+        if(is_found(i, a))
         {
-            if(index = array[i])
-            {
-               check =1;
-            }
+            cout<<"push ";
+
 
         }
-        index++;
-        if(!check)
-        pop();
-
+        else
+        {
+            cout << "push pop ";
+        }
     }
-
-
-
-
-return 0;
+    return 0;
 }
